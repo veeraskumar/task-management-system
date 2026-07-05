@@ -3,6 +3,7 @@ package com.rvk.tms.service.impl;
 import java.time.LocalDateTime;
 import java.util.List;
 
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -24,7 +25,9 @@ import lombok.RequiredArgsConstructor;
 @Transactional(readOnly = true)
 public class UserServiceImpl implements UserService {
 
+	private final PasswordEncoder passwordEncoder; 
 	private final UserRepository userRepository;
+
 
 	@Override
 	@Transactional
@@ -38,7 +41,7 @@ public class UserServiceImpl implements UserService {
 		user.setName(request.name());
 		user.setEmail(request.email());
 		user.setRole(Role.USER);
-		user.setPassword(request.password());
+		user.setPassword(passwordEncoder.encode(request.password()));
 		user.setCreatedAt(LocalDateTime.now());
 
 		User savedUser = userRepository.save(user);

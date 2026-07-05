@@ -19,7 +19,5 @@ public record TaskRequest(
 
 		@NotNull(message = "Due date is required") @FutureOrPresent(message = "Due date must be in the present or future") LocalDate dueDate,
 
-		@NotNull(message = "User Id is Required") Long userId,
-
 		@NotNull(message = "Category Id is Required") Long categoryId) {
 }

@@ -4,10 +4,10 @@ import java.util.Optional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import com.rvk.tms.dto.UserResponse;
 import com.rvk.tms.entity.User;
 
 public interface UserRepository extends JpaRepository<User, Long> {
 
-	Optional<UserResponse> findByEmail(String email);
+	Optional<User> findByEmail(String email);
+	
 }
